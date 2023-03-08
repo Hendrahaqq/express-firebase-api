@@ -19,6 +19,7 @@ const db = admin.firestore();
 
 // define API routes
 app.get('/items', async (req, res) => {
+  console.log('get items endpoint hit')
   try {
     const itemsRef = db.collection('items');
     const snapshot = await itemsRef.get();
@@ -31,6 +32,7 @@ app.get('/items', async (req, res) => {
 });
 
 app.get('/items/:id', async (req, res) => {
+  console.log('get single item endpoint hit')
   try {
     const itemId = req.params.id;
     const itemRef = db.collection('items').doc(itemId);
@@ -48,6 +50,7 @@ app.get('/items/:id', async (req, res) => {
 });
 
 app.post('/items', async (req, res) => {
+  console.log('post item endpoint hit')
   try {
     const item = req.body;
     const newItemRef = await db.collection('items').add(item);
@@ -61,6 +64,7 @@ app.post('/items', async (req, res) => {
 });
 
 app.put('/items/:id', async (req, res) => {
+  console.log('put item endpoint hit')
   try {
     const itemId = req.params.id;
     const item = req.body;
@@ -76,6 +80,7 @@ app.put('/items/:id', async (req, res) => {
 });
 
 app.delete('/items/:id', async (req, res) => {
+  console.log('delete item endpoint hit')
   try {
     const itemId = req.params.id;
     await db.collection('items').doc(itemId).delete();
